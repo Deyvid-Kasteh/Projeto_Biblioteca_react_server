@@ -36,7 +36,7 @@ class UsersController {
   }
     async create(req, res) {
         try {
-            const { email, password } = req.body;
+            const { name, email, password } = req.body;
             const user = await User.findOne({ email });
             if (user) {
                 return res
@@ -50,6 +50,7 @@ class UsersController {
           // const encryptedPassword = await createPasswordHash(password)
 
           const newUser = await User.create({
+            name,
             email,
             password: createPasswordHash
           });
