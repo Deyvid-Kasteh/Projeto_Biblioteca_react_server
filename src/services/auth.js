@@ -1,7 +1,8 @@
 import bcrypt from 'bcryptjs';
 
 export const createPasswordHash = async (password) =>
-    bcrypt.hash(password, 8);
+    await bcrypt.hash(password, 8);
 
-export const checkPassword = (user, password) =>
-    bcrypt.compare(password, user.password);
+export const checkPassword = async (user, password) =>
+    await bcrypt.compare(password, user.password);
+    console.log('Checking password')
