@@ -12,6 +12,7 @@ const routes = new Router();
 routes.get("/hello", HelloController.index);
 routes.post("/sessions", SessionsController.create);
 routes.post("/users", UsersController.create);
+routes.patch("/Perfil/:id", UsersController.updateOne);
 
 
 // --- middleware

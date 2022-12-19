@@ -88,9 +88,37 @@ class UsersController {
         return res.status(500).json({
           error: "Erro no servidor interno",
         });
-
       }
   }
+
+  async updateOne(req, res) {
+    try {
+      const { id } = req.params;
+      const { age } = req.body;
+
+      const user = await User.findById(id);
+      if (!user) {
+        console.log("User not found");
+        return res.status(404).json();
+      }
+      await User.findByIdAndUpdate(
+        { _id: id },
+        {
+          $push: { details: { age } }
+        });
+      return res.status(200).json(user);
+
+
+
+
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        error: "Erro no servidor interno",
+      });
+    }
+  }
+
     async destroy(req, res) {
       try {
         const { id } = req.params;
