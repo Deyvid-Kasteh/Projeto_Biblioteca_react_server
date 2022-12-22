@@ -30,6 +30,24 @@ class UsersController {
       });
     }
   }
+
+  async showUser(req, res) {
+    try {
+      const { id } = req.params;
+      const userAtualizado = await User.findById(id);
+
+      if (!userAtualizado) {
+        return res.status(404).json();
+      }
+      return res.json(userAtualizado);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        error: "Erro no servidor interno",
+      });
+    }
+  }
+
   async create(req, res) {
     try {
       const { name, email, password } = req.body;
@@ -94,7 +112,7 @@ class UsersController {
       await User.findByIdAndUpdate(
         { _id: id },
         {
-          $push: { details: { age } },
+          $push: { details: { age: age } },
         }
       );
       return res.status(200).json(user);
@@ -108,18 +126,18 @@ class UsersController {
 
   async addBookToFavorites(req, res) {
     try {
-      const { id } = req.params;
-      const { livro } = req.body;
+      const { idUsuario, idLivro } = req.params;
+      // const { idLivro } = req.body;
 
-      const user = await User.findById(id);
+      const user = await User.findById(idUsuario);
       if (!user) {
         console.log("User not found");
         return res.status(404).json();
       }
       await User.findByIdAndUpdate(
-        { _id: id },
+        { _id: idUsuario },
         {
-          $push: { books: livro },
+          $addToSet: { books: idLivro },
         }
       );
       return res.status(200).json(user);

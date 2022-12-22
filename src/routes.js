@@ -12,8 +12,6 @@ const routes = new Router();
 routes.get("/hello", HelloController.index);
 routes.post("/sessions", SessionsController.create);
 routes.post("/users", UsersController.create);
-routes.patch("/Perfil/:id", UsersController.updateOne);
-routes.patch("/Perfil/:id/addBookToFavorites/:livro", UsersController.addBookToFavorites);
 
 
 
@@ -22,7 +20,12 @@ routes.use(auth)
 
 // --- Rosta protegida
 
-
+routes.get("/Perfil/:id", UsersController.showUser);
+routes.patch("/Perfil/:id", UsersController.updateOne);
+routes.patch(
+  "/Perfil/:idUsuario/addBookToFavorites/:idLivro",
+  UsersController.addBookToFavorites
+);
 
 routes.get("/users", UsersController.index);
 routes.get("/users/:id", UsersController.show);
