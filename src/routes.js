@@ -13,6 +13,8 @@ routes.get("/hello", HelloController.index);
 routes.post("/sessions", SessionsController.create);
 routes.post("/users", UsersController.create);
 routes.patch("/Perfil/:id", UsersController.updateOne);
+routes.patch("/Perfil/:id/addBookToFavorites/:livro", UsersController.addBookToFavorites);
+
 
 
 // --- middleware
