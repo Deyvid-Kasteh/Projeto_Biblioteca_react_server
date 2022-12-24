@@ -27,6 +27,14 @@ routes.patch(
   UsersController.addBookToFavorites
 );
 
+routes.delete(
+  "/Perfil/:idUsuario/destroyBookfromFavorites/:idLivro",
+  UsersController.destroyBookfromFavorites
+);
+
+
+
+
 routes.get("/users", UsersController.index);
 routes.get("/users/:id", UsersController.show);
 routes.put("/users/:id", UsersController.update);

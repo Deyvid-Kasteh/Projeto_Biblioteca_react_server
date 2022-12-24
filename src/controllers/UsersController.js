@@ -138,9 +138,7 @@ class UsersController {
         { _id: idUsuario },
         {
           $addToSet: {
-            books:
-              { idLivro: idLivro, imgLivro: imgLivro, ttlLivro: ttlLivro }
-
+            books: { idLivro: idLivro, imgLivro: imgLivro, ttlLivro: ttlLivro },
           },
         }
       );
@@ -162,6 +160,34 @@ class UsersController {
       }
       await user.deleteOne();
       return res.status(204).json({ done: "foi" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        error: "Erro no servidor interno",
+      });
+    }
+  }
+
+  async destroyBookfromFavorites(req, res) {
+    try {
+      const { idUsuario, idLivro } = req.params;
+      console.error(idLivro);
+
+
+      const user = await User.findById(idUsuario);
+      if (!user) {
+        console.log("User not found");
+        return res.status(404).json();
+      }
+      await User.findByIdAndUpdate(
+        { _id: idUsuario },
+        {
+          $pull: {
+            books: {idLivro: idLivro}
+          }
+        }
+      );
+      return res.status(200).json(user);
     } catch (error) {
       console.error(error);
       return res.status(500).json({
