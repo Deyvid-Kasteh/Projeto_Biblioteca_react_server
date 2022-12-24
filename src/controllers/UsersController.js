@@ -138,11 +138,9 @@ class UsersController {
         { _id: idUsuario },
         {
           $addToSet: {
-            books: [
-              { idLivro: idLivro },
-              { imgLivro: imgLivro },
-              { ttlLivro: ttlLivro },
-            ],
+            books:
+              { idLivro: idLivro, imgLivro: imgLivro, ttlLivro: ttlLivro }
+
           },
         }
       );
