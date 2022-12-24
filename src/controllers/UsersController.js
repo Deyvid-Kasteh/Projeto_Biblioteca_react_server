@@ -126,8 +126,8 @@ class UsersController {
 
   async addBookToFavorites(req, res) {
     try {
-      const { idUsuario, idLivro } = req.params;
-      // const { idLivro } = req.body;
+      const { idUsuario } = req.params;
+      const { idLivro, imgLivro, ttlLivro } = req.body;
 
       const user = await User.findById(idUsuario);
       if (!user) {
@@ -137,7 +137,13 @@ class UsersController {
       await User.findByIdAndUpdate(
         { _id: idUsuario },
         {
-          $addToSet: { books: idLivro },
+          $addToSet: {
+            books: [
+              { idLivro: idLivro },
+              { imgLivro: imgLivro },
+              { ttlLivro: ttlLivro },
+            ],
+          },
         }
       );
       return res.status(200).json(user);
