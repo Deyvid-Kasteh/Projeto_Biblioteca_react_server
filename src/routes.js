@@ -22,6 +22,7 @@ routes.use(auth)
 
 routes.get("/Perfil/:id", UsersController.showUser);
 routes.patch("/Perfil/:id", UsersController.updateOne);
+routes.patch("/Perfil/:id/pic", UsersController.updatePic);
 routes.patch(
   "/Perfil/:idUsuario/addBookToFavorites/:idLivro",
   UsersController.addBookToFavorites

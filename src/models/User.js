@@ -17,7 +17,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    details: [{ age: { type: Number } }, { gender: { type: String } }, { picture: {tipe: String } }],
+    details: {
+      age: { type: Number },
+      gender: { type: String },
+      picture: { type: Number },
+    },
     books: {
       type: [],
     },
@@ -27,5 +31,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-
-export default mongoose.model('User', userSchema);
+export default mongoose.model("User", userSchema);

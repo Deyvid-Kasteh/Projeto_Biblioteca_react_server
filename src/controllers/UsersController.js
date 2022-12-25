@@ -124,6 +124,34 @@ class UsersController {
     }
   }
 
+  async updatePic(req, res) {
+    try {
+      const { id } = req.params;
+      const { pic } = req.body;
+
+      const user = await User.findById(id);
+      if (!user) {
+        console.log("User not found");
+        return res.status(404).json();
+      }
+      await User.findByIdAndUpdate(
+        { _id: id },
+        {
+          $set: { details: { picture: pic } },
+        }
+      );
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        error: "Erro no servidor interno",
+      });
+    }
+
+
+
+  }
+
   async addBookToFavorites(req, res) {
     try {
       const { idUsuario } = req.params;
@@ -173,7 +201,6 @@ class UsersController {
       const { idUsuario, idLivro } = req.params;
       console.error(idLivro);
 
-
       const user = await User.findById(idUsuario);
       if (!user) {
         console.log("User not found");
@@ -183,8 +210,8 @@ class UsersController {
         { _id: idUsuario },
         {
           $pull: {
-            books: {idLivro: idLivro}
-          }
+            books: { idLivro: idLivro },
+          },
         }
       );
       return res.status(200).json(user);
