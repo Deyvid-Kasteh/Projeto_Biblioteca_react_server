@@ -12,6 +12,7 @@ const routes = new Router();
 routes.get("/hello", HelloController.index);
 routes.post("/sessions", SessionsController.create);
 routes.post("/users", UsersController.create);
+routes.get("/Perfil/:id", UsersController.showUser);
 
 
 
@@ -20,7 +21,6 @@ routes.use(auth)
 
 // --- Rosta protegida
 
-routes.get("/Perfil/:id", UsersController.showUser);
 routes.patch("/Perfil/:id", UsersController.updateOne);
 routes.patch("/Perfil/:id/pic", UsersController.updatePic);
 routes.patch(

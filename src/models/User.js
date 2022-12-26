@@ -20,9 +20,12 @@ const userSchema = new mongoose.Schema(
     details: {
       age: { type: Number },
       gender: { type: String },
-      picture: { type: Number },
+      picture: 0,
     },
     books: {
+      type: [],
+    },
+    booksSeeLater: {
       type: [],
     },
   },
