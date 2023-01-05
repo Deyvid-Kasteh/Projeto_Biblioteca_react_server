@@ -28,11 +28,23 @@ routes.patch(
   UsersController.addBookToFavorites
 );
 
+routes.patch(
+  "/Perfil/:idUsuario/addBookToSeeLater/:idLivro",
+  UsersController.addBookToSeeLater
+);
+
 routes.delete(
   "/Perfil/:idUsuario/destroyBookfromFavorites/:idLivro",
   UsersController.destroyBookfromFavorites
 );
 
+routes.delete(
+  "/Perfil/:idUsuario/destroySeeLaterBook/:idLivro",
+  UsersController.destroySeeLaterBook
+);
+
+
+// destroySeeLaterBook;
 
 
 
