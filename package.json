@@ -1,8 +1,9 @@
 {
   "name": "Projeto_Biblioteca_react_server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/server.js",
   "type": "module",
+  "engines": {"node": "14.x"},
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
