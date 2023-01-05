@@ -1,7 +1,7 @@
 {
   "name": "Projeto_Biblioteca_react_server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "sucrase ./src -d ./dist --transforms imports",
   "type": "module",
   "engines": {
     "node": "14.x"
@@ -20,7 +20,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "sucrase ./src -d ./dist --transforms imports",
     "dev": "nodemon index.js",
     "build": "sucrase ./src -d ./dist --transforms imports"
   }
