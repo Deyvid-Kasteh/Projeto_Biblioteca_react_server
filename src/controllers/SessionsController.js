@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import authConfig from "../config/auth";
-import User from "../models/User";
+import authConfig from "../config/auth.js";
+import User from "../models/User.js";
 // import { checkPassword } from "../services/auth";
 import bcrypt from "bcryptjs";
 

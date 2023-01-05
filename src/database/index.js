@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import config from "../config/database";
+import config from "../config/database.js";
 
 class Database {
     constructor() {
